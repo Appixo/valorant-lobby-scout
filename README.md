@@ -12,6 +12,7 @@ It does not reveal the names of players who use incognito mode.
 - 👥 **Parties**: players who queued together sit next to each other with a coloured strip (DUO, TRIO, …); a dashed strip is a guess from recent matches
 - ⚠️ **Possible smurfs**: flags low-level accounts at high ranks, big gaps between peak and current rank, very high win rates and K/Ds
 - ↺ **Met before**: remembers players from earlier matches (when, which map, teammate or opponent)
+- 🚪 **Dodge**: a Dodge button appears during agent select to leave the match in one click (asks first; Riot's normal dodge penalty applies)
 - 🖱️ **Hover a player** for the reasons behind these markers; **double-click** to open their Tracker.gg profile
 - ↔️ **Side-by-side or stacked** team tables (layout button or Ctrl+L), remembered between sessions
 - 🗺️ **Always up to date**: agent and map names come from valorant-api.com, so new agents and maps work without updates
@@ -123,6 +124,9 @@ Each agent has specific expertise and responsibilities. See `.cursorrules` and `
 This tool uses the Valorant client API for educational purposes. Use responsibly and in accordance with Riot Games' Terms of Service.
 
 ## Recent Updates
+
+### Version 2.5 (November 2026)
+- ✅ Dodge button during agent select
 
 ### Version 2.4 (November 2026)
 - ✅ Update notifications: the app tells you when a newer version is on GitHub

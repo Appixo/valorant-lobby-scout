@@ -1,4 +1,4 @@
 {
-    "version": "2.4",
-    "notes": "Fixed peak rank showing Radiant for players who were Immortal in Episode 5 Act 1. Added update notifications."
+    "version": "2.5",
+    "notes": "New Dodge button during agent select: leave the match in one click."
 }

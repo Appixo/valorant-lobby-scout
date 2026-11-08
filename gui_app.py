@@ -319,6 +319,9 @@ class ValorantDetectorGUI:
         self.layout_btn.bind('<Enter>', lambda e: self._draw_layout_icon(hover=True), add='+')
         self.layout_btn.bind('<Leave>', lambda e: self._draw_layout_icon(hover=False), add='+')
 
+        self.dodge_btn = self.make_button(right_frame, "Dodge", self.dodge_match)
+        self.dodge_btn.config(fg=self.colors['accent_red'], activeforeground=self.colors['accent_red'])
+
         self.auto_btn = self.make_button(right_frame, "", self.toggle_monitoring)
         self.auto_btn.pack(side=tk.LEFT, padx=(0, 8))
         self._update_auto_button()
@@ -535,6 +538,8 @@ class ValorantDetectorGUI:
         """Tooltips and keyboard shortcuts"""
         self.create_tooltip(self.refresh_btn, "Refresh current match (F5)")
         self.create_tooltip(self.load_stats_btn, "Load rank, peak, win rate, K/D and HS% for all players\nAuto mode does this for you")
+        self.create_tooltip(self.dodge_btn, "Leave agent select (dodge). Cancels the match for everyone;\n"
+                                            "Riot's normal dodge penalty applies")
         self.create_tooltip(self.auto_btn, lambda: "Auto mode is on: detects agent select and matches,\nthen loads stats automatically. Click to turn off."
                             if self.auto_mode else "Auto mode is off: use Refresh and Load Stats.\nClick to turn on.")
         self.create_tooltip(self.status_label, "Connection status to the Valorant client")
@@ -733,6 +738,7 @@ class ValorantDetectorGUI:
     def set_disconnected_state(self):
         """Set UI to proper disconnected state"""
         self.match_status_value.config(text="WAITING FOR CONNECTION", fg=self.colors['text_secondary'])
+        self._set_dodge_visible(False)
         self.match_map_value.config(text="—", fg=self.colors['text_secondary'])
 
         self.show_empty_state(self.attackers_board, "Waiting for match data...")
@@ -953,6 +959,48 @@ class ValorantDetectorGUI:
             self.logger_system.log_error("MatchProcessing", e, f"Match ID: {match_id}")
             self.log(f"Error processing match data: {str(e)}", "Error")
 
+    def _set_dodge_visible(self, visible):
+        if visible and not self.dodge_btn.winfo_manager():
+            self.dodge_btn.config(state=tk.NORMAL, text="Dodge")
+            self.dodge_btn.pack(side=tk.LEFT, padx=(0, 8), before=self.auto_btn)
+        elif not visible and self.dodge_btn.winfo_manager():
+            self.dodge_btn.pack_forget()
+
+    def dodge_match(self):
+        """Leave agent select after asking; Riot treats it like any other dodge"""
+        match_id = self._current_match_id
+        if not self.client or self._current_phase != 'PREGAME' or not match_id:
+            return
+
+        map_name = self.match_map_value.cget('text').title()
+        if not messagebox.askyesno(
+                "Dodge this match?",
+                f"Leave agent select on {map_name}?\n\n"
+                "This cancels the match for all players. Riot applies its normal dodge "
+                "penalty: you lose RR in competitive and can't queue for a while, longer "
+                "if you dodge again soon.",
+                icon='warning', default='no', parent=self.root):
+            return
+
+        self.dodge_btn.config(state=tk.DISABLED, text="Dodging…")
+
+        def dodge():
+            try:
+                self.client.pregame_quit_match(match_id)
+                self.log(f"Dodged agent select on {map_name}")
+                if not self.auto_mode:
+                    self.root.after(1000, self.refresh_match)
+            except Exception as e:
+                error = str(e)
+                self.log(f"Dodge failed: {error}", "Error")
+                self.root.after(0, lambda: self._dodge_failed(error))
+
+        threading.Thread(target=dodge, daemon=True).start()
+
+    def _dodge_failed(self, error):
+        self.dodge_btn.config(state=tk.NORMAL, text="Dodge")
+        messagebox.showerror("Dodge failed", f"Could not leave agent select:\n{error}", parent=self.root)
+
     def update_match_status(self, status, map_name):
         """Update match status strip"""
         phase = status.upper()
@@ -967,6 +1015,7 @@ class ValorantDetectorGUI:
 
         self.match_status_value.config(text=status_display.upper(), fg=color)
         self.match_map_value.config(text=map_name.upper(), fg=self.colors['text_primary'])
+        self._set_dodge_visible("PREGAME" in phase)
 
     def _is_me(self, puuid):
         return bool(self.client and puuid and puuid.lower() == self.client.puuid.lower())
@@ -1428,6 +1477,7 @@ class ValorantDetectorGUI:
     def clear_match_data(self):
         self._current_phase = None
         self.match_status_value.config(text="NO ACTIVE MATCH", fg=self.colors['text_secondary'])
+        self._set_dodge_visible(False)
         self.match_map_value.config(text="—", fg=self.colors['text_secondary'])
 
         self.show_empty_state(self.attackers_board, "No active match")
