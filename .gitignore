@@ -1,0 +1,17 @@
+# Personal settings (contains your Henrik API key) - copy settings.example.json to start
+settings.json
+
+# Local data and caches
+match_history.json
+player_cache.json
+player_stats.json
+game_data_cache.json
+cache/
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/

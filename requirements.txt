@@ -1,0 +1,4 @@
+valclient
+requests
+plyer  # Optional: for cross-platform desktop notifications
+valo-api

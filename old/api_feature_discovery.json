@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-09-01 11:20:58",
+  "henrik_api_endpoints": [
+    {
+      "endpoint": "/valorant/v2/leaderboard/eu",
+      "description": "Leaderboard"
+    },
+    {
+      "endpoint": "/valorant/v1/store-featured",
+      "description": "Featured Store"
+    },
+    {
+      "endpoint": "/valorant/v1/esports/schedule",
+      "description": "Esports Schedule"
+    },
+    {
+      "endpoint": "/valorant/v1/status/eu",
+      "description": "Server Status"
+    }
+  ],
+  "valorant_api_endpoints": [
+    {
+      "endpoint": "/agents",
+      "description": "All Agents"
+    },
+    {
+      "endpoint": "/agents?isPlayableCharacter=true",
+      "description": "Playable Agents"
+    },
+    {
+      "endpoint": "/maps",
+      "description": "All Maps"
+    },
+    {
+      "endpoint": "/weapons",
+      "description": "All Weapons"
+    },
+    {
+      "endpoint": "/gear",
+      "description": "Gear/Armor"
+    },
+    {
+      "endpoint": "/buddies",
+      "description": "Gun Buddies"
+    },
+    {
+      "endpoint": "/sprays",
+      "description": "Sprays"
+    },
+    {
+      "endpoint": "/currencies",
+      "description": "In-game Currencies"
+    },
+    {
+      "endpoint": "/gamemodes",
+      "description": "Game Modes"
+    },
+    {
+      "endpoint": "/seasons",
+      "description": "Seasons"
+    },
+    {
+      "endpoint": "/competitivetiers",
+      "description": "Competitive Tiers/Ranks"
+    },
+    {
+      "endpoint": "/contenttiers",
+      "description": "Content Tiers"
+    },
+    {
+      "endpoint": "/contracts",
+      "description": "Contracts"
+    },
+    {
+      "endpoint": "/events",
+      "description": "Events"
+    },
+    {
+      "endpoint": "/ceremonies",
+      "description": "Ceremonies"
+    },
+    {
+      "endpoint": "/levelborders",
+      "description": "Level Borders"
+    }
+  ]
+}

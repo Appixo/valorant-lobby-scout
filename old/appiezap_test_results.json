@@ -1,0 +1,18 @@
+{
+  "account": "Appiezap",
+  "tag": "0000",
+  "tests": {
+    "account_details": {
+      "success": false,
+      "error": "Errors: Route not found"
+    },
+    "mmr_details": {
+      "success": false,
+      "error": "Errors: Route not found"
+    },
+    "match_history": {
+      "success": false,
+      "error": "Errors: Route not found"
+    }
+  }
+}

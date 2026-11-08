@@ -1,0 +1,250 @@
+# Valorant Player Detector - AI Agent Configuration
+
+## Project Overview
+This is a Python-based Valorant player detection application that identifies incognito players, fetches statistics from multiple APIs, and detects streamers across various platforms. The app features a modern Tkinter GUI with real-time match monitoring.
+
+## Technology Stack
+- **Language**: Python 3.7+
+- **GUI**: Tkinter with custom dark theme
+- **APIs**: Valorant API, Tracker.gg, Twitch, YouTube, Kick, TikTok
+- **Data**: JSON-based persistence with caching
+- **Game Client**: valclient library for Valorant integration
+
+## Project Structure
+```
+.
+├── gui_app.py              # Main GUI application (1355 lines)
+├── main.py                 # Entry point
+├── player.py               # Player data classes
+├── game.py                 # Game state management
+├── valorant_api_client.py  # ValorantAPI integration
+├── tracker_api.py          # Tracker.gg integration
+├── streaming_services.py   # Multi-platform streaming detection
+├── player_stats.py         # Statistics management
+├── match_history.py        # Match tracking
+├── cache_manager.py        # Caching system
+├── notifications.py        # Notification system
+├── logger_config.py        # Logging configuration
+└── test_*.py              # Test suite (10+ files)
+```
+
+## Specialized Agents
+
+This project uses **5 specialized AI agents**, each with distinct responsibilities:
+
+### 1. 🎨 UI/GUI Development Agent
+**Primary Focus**: User interface and visual design
+
+**Trigger Phrases**: 
+- "GUI", "UI", "interface", "display", "theme", "layout", "window", "button", "styling"
+
+**Responsibilities**:
+- Maintain `gui_app.py` (main GUI application)
+- Design and implement UI components
+- Manage Valorant-inspired dark theme
+- Handle user interactions and events
+- Optimize GUI responsiveness
+- Create loading states and animations
+
+**Read**: `.cursor/agents/ui-gui-agent.md`
+
+### 2. 🔧 API Integration Agent
+**Primary Focus**: External API communication
+
+**Trigger Phrases**:
+- "API", "request", "endpoint", "rate limit", "Valorant API", "Tracker.gg", "streaming", "Twitch", "YouTube"
+
+**Responsibilities**:
+- Maintain API clients (`valorant_api_client.py`, `tracker_api.py`, `streaming_services.py`)
+- Implement rate limiting and retry logic
+- Handle API authentication
+- Manage multi-platform integrations
+- Optimize API calls with caching
+- Debug API-related issues
+
+**Read**: `.cursor/agents/api-integration-agent.md`
+
+### 3. 📊 Data & Statistics Agent
+**Primary Focus**: Data management and analytics
+
+**Trigger Phrases**:
+- "stats", "statistics", "data", "cache", "player data", "match history", "smurf detection", "database"
+
+**Responsibilities**:
+- Maintain data layer (`player_stats.py`, `match_history.py`, `cache_manager.py`)
+- Implement statistical calculations
+- Manage data persistence (JSON files)
+- Optimize caching strategies
+- Implement smurf detection algorithms
+- Handle data validation
+
+**Read**: `.cursor/agents/data-statistics-agent.md`
+
+### 4. 🐛 Testing & QA Agent
+**Primary Focus**: Quality assurance and testing
+
+**Trigger Phrases**:
+- "test", "testing", "bug", "error", "debug", "fix", "pytest", "quality", "coverage"
+
+**Responsibilities**:
+- Maintain test suite (all `test_*.py` files)
+- Write unit and integration tests
+- Debug issues and reproduce bugs
+- Analyze error logs
+- Profile performance
+- Document bug fixes in `BUGFIX_LOG_ERROR.md`
+
+**Read**: `.cursor/agents/testing-qa-agent.md`
+
+### 5. 📝 Documentation Agent
+**Primary Focus**: Documentation and guides
+
+**Trigger Phrases**:
+- "documentation", "README", "docs", "guide", "tutorial", "docstring", "comment", "explain"
+
+**Responsibilities**:
+- Maintain all `.md` documentation files
+- Keep README.md up-to-date
+- Write API documentation
+- Create user guides
+- Document features and changes
+- Maintain changelog and bug logs
+
+**Read**: `.cursor/agents/documentation-agent.md`
+
+## Agent Selection Guide
+
+When working on this project, the AI should automatically select the appropriate agent based on the task:
+
+| Task Type | Select Agent | Example |
+|-----------|-------------|---------|
+| Modify GUI appearance | UI/GUI Agent | "Make the player cards bigger" |
+| Add new API endpoint | API Integration Agent | "Add support for Facebook Gaming streams" |
+| Change stats calculation | Data & Statistics Agent | "Improve smurf detection algorithm" |
+| Write tests | Testing & QA Agent | "Add tests for cache expiration" |
+| Update README | Documentation Agent | "Document the new feature" |
+| Fix UI bug | UI/GUI Agent + Testing Agent | "Button click not working" |
+| API not working | API Integration Agent + Testing Agent | "Valorant API returns 429" |
+| New feature (full) | Multiple Agents | Plan, coordinate, implement |
+
+## Multi-Agent Workflows
+
+Some tasks require coordination between multiple agents:
+
+### Adding a New Feature
+1. **Documentation Agent**: Plan and document the feature
+2. **API Agent** (if needed): Integrate external APIs
+3. **Data Agent** (if needed): Add data structures
+4. **UI Agent**: Create interface elements
+5. **Testing Agent**: Write tests
+6. **Documentation Agent**: Update docs
+
+### Fixing a Bug
+1. **Testing Agent**: Reproduce and identify root cause
+2. **Relevant Agent**: Implement fix (UI/API/Data)
+3. **Testing Agent**: Verify fix with tests
+4. **Documentation Agent**: Document in BUGFIX_LOG_ERROR.md
+
+### Performance Optimization
+1. **Testing Agent**: Profile and identify bottlenecks
+2. **Relevant Agent**: Optimize code
+3. **Testing Agent**: Verify improvements
+4. **Documentation Agent**: Update performance notes
+
+## Code Style & Standards
+
+### Python Style
+- Follow PEP 8
+- Use type hints where applicable
+- Docstrings for all public methods
+- Max line length: 100 characters
+
+### Threading
+- GUI updates must use `root.after()`
+- Long operations run in background threads
+- Use proper thread synchronization (locks)
+
+### Error Handling
+```python
+try:
+    # Operation
+    result = api_call()
+except SpecificError as e:
+    logger.error(f"Specific error: {e}")
+    return fallback_value
+except Exception as e:
+    logger.error(f"Unexpected error: {e}")
+    return None
+```
+
+### Logging
+```python
+self.logger.debug("Detailed debug info")
+self.logger.info("General information")
+self.logger.warning("Warning message")
+self.logger.error("Error details")
+```
+
+## Testing Requirements
+- Unit tests for all new functions
+- Integration tests for API calls (mocked)
+- >80% code coverage target
+- All tests must pass before merging
+
+## Performance Guidelines
+- API calls: <2s timeout
+- GUI responsiveness: No blocking operations
+- Cache hit rate: >70%
+- Memory usage: <100MB typical
+- Startup time: <3s
+
+## Security Considerations
+- Never commit API keys
+- Use environment variables for secrets
+- Sanitize user inputs
+- Validate API responses
+- Secure data storage
+
+## Common Pitfalls to Avoid
+1. **GUI Blocking**: Never make API calls on main thread
+2. **Rate Limits**: Always implement rate limiting
+3. **Cache Staleness**: Set appropriate TTLs
+4. **Error Swallowing**: Log all errors properly
+5. **Resource Leaks**: Close connections and files
+6. **Threading Issues**: Use locks for shared data
+
+## Recent Project Changes
+
+### Cleanup (2025-10-29)
+Removed unused/duplicate files:
+- ❌ `gui_app_clean.py` - Clean UI variant (unused)
+- ❌ `gui_app_dark.py` - Dark UI variant (unused)
+- ❌ `launch_gui.py` - Duplicate launcher
+- ❌ `run_gui.py` - Duplicate launcher
+- ❌ `run_clean_gui.py` - Launcher for removed variant
+- ❌ `run_dark_gui.py` - Launcher for removed variant
+
+**Current Entry Points**:
+- ✅ `main.py` - Primary entry point (launches `gui_app.py`)
+- ✅ `main_console.py` - Console version (legacy)
+- ✅ `start_detector.bat` - Windows launcher
+
+## Getting Help
+
+When uncertain about which agent to use:
+1. Review the task type in the Agent Selection Guide above
+2. Check the trigger phrases for each agent
+3. Read the relevant agent's detailed configuration
+4. Consider if multiple agents need to coordinate
+
+For complex tasks spanning multiple domains, start with the Documentation Agent to plan the work, then coordinate between relevant specialized agents.
+
+## Agent Communication
+
+Agents should coordinate by:
+- Referencing shared files (e.g., data structures)
+- Following established APIs and interfaces
+- Updating documentation for cross-agent changes
+- Testing integration points thoroughly
+- Noting dependencies in commit messages
+

@@ -1,0 +1,11 @@
+{
+    "region": null,
+    "stateInterval": 5,
+    "twitchReqDelay": 1.5,
+    "ran": false,
+    "skipTeamPlayers": false,
+    "skipPartyPlayers": true,
+    "layout": "horizontal",
+    "henrikApiKey": "YOUR_HENRIK_API_KEY",
+    "autoMode": true
+}
