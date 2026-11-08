@@ -157,14 +157,15 @@ def get_map_name(map_id, default="Unknown Map"):
     return default
 
 
-# Ascendant was added in Episode 5 Act 1; before that tiers 21-24 were Immortal 1-3 and Radiant
-ASCENDANT_RELEASE = "2022-06-22"
+# Ascendant was added in Episode 5 Act 1; before that tiers 21-24 were Immortal 1-3 and Radiant.
+# valorant-api.com lists E5A1 as starting 2022-06-21T00:00:00Z, so it must not count as an old act.
+ASCENDANT_RELEASE = "2022-06-21"
 
 
 def normalize_tier(tier, season_id):
     """Convert a competitive tier from an old season to the current tier numbering"""
     start = _load().get("seasons", {}).get((season_id or "").lower())
-    if start and start < ASCENDANT_RELEASE and tier > 20:
+    if start and start[:10] < ASCENDANT_RELEASE and tier > 20:
         return tier + 3
     return tier
 

@@ -24,12 +24,24 @@ It does not reveal the names of players who use incognito mode.
 ## Installation
 
 1. Clone or download this repository
-2. Copy `settings.example.json` to `settings.json` and fill in your [Henrik API key](https://docs.henrikdev.xyz) (`henrikApiKey`); it's only used as a fallback for stats
+2. Optional: copy `settings.example.json` to `settings.json` and fill in your [Henrik API key](https://docs.henrikdev.xyz) (`henrikApiKey`); it's only used as a fallback for stats
 3. Double-click `start_detector.bat` (it installs missing requirements the first time), or run:
    ```bash
    pip install -r requirements.txt
    python main.py
    ```
+
+## Updating
+
+The app checks GitHub when it starts (and every few hours while open) and shows an **Update available** bar when there's a newer version.
+
+- **Downloaded as ZIP:** download the ZIP again and copy its contents over your current folder. Your `settings.json` and match history aren't in the ZIP, so they're kept.
+- **Cloned with git:** run `git pull` in the folder.
+- **Installed by an AI agent:** ask it to update the folder to the latest version from this repository.
+
+Restart the app afterwards.
+
+**For the maintainer:** users are only notified when the `version` in `version.json` on `main` is higher than theirs. Bump it (and update `notes`) in the commit you want people to get.
 
 ## Usage
 
@@ -83,6 +95,9 @@ Party detection depends on which players' presence the game client shares, so no
 ├── match_insights.py       # Parties, smurf flags, earlier encounters
 ├── match_history.py        # Saved matches
 ├── game_data.py            # Agent, map and season names (valorant-api.com)
+├── team_board.py           # Drawing of the team panels and player cards
+├── updater.py              # Checks GitHub for a newer version
+├── version.json            # Current version; bump it to notify users
 ├── valorant_api_client.py  # Riot client APIs + Henrik API fallback
 ├── tracker_api.py          # Tracker.gg (optional)
 ├── cache_manager.py, logger_config.py, notifications.py, player_stats.py, streaming_services.py
@@ -108,6 +123,10 @@ Each agent has specific expertise and responsibilities. See `.cursorrules` and `
 This tool uses the Valorant client API for educational purposes. Use responsibly and in accordance with Riot Games' Terms of Service.
 
 ## Recent Updates
+
+### Version 2.4 (November 2026)
+- ✅ Update notifications: the app tells you when a newer version is on GitHub
+- ✅ Fixed peak rank showing Radiant (or Immortal) for players who were Immortal (or Ascendant) in Episode 5 Act 1
 
 ### Version 2.3 (November 2026)
 - ✅ Renamed to Valorant Lobby Scout

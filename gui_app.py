@@ -16,9 +16,10 @@ from cache_manager import CacheManager
 from notifications import NotificationManager
 from logger_config import get_logger, init_logging
 import game_data
+import updater
 from match_insights import (extract_players, presence_parties, number_parties, smurf_reasons,
                             find_encounters, describe_encounters, build_name_ledger, friend_names, time_ago)
-from team_board import TeamBoard, pick_family, PARTY_LABELS
+from team_board import TeamBoard, pick_family, blend, PARTY_LABELS
 
 class ValorantDetectorGUI:
     def __init__(self, root):
@@ -71,6 +72,8 @@ class ValorantDetectorGUI:
         self.current_game = None
         self.settings = self.load_settings()
         self.auto_mode = self.settings.get('autoMode', True)
+        self.app_version = updater.local_version()
+        self._dismissed_update = None
 
         # Match tracking (shared between the auto monitor and manual refreshes)
         self._match_lock = threading.Lock()
@@ -120,6 +123,7 @@ class ValorantDetectorGUI:
         
         # Auto-connect on startup
         self.root.after(1000, self.connect_client)
+        self.root.after(3000, self.check_for_updates)
         
         # Setup cleanup on close
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
@@ -222,8 +226,10 @@ class ValorantDetectorGUI:
 
         self.setup_header_bar(main_frame)
         self.setup_session_footer(main_frame)
+        self.setup_update_banner(main_frame)
 
         content = tk.Frame(main_frame, bg=self.colors['bg_primary'])
+        self._content_frame = content
         content.pack(fill=tk.BOTH, expand=True, padx=16, pady=(14, 12))
 
         self.setup_match_card(content)
@@ -472,10 +478,58 @@ class ValorantDetectorGUI:
         for text, color in legend:
             tk.Label(footer_content, text=text, fg=color, **label_opts).pack(side=tk.LEFT, padx=(0, 16))
 
-        tk.Label(footer_content, text="v2.3", fg=self.colors['text_muted'], **label_opts).pack(side=tk.RIGHT)
+        tk.Label(footer_content, text=f"v{self.app_version}", fg=self.colors['text_muted'], **label_opts).pack(side=tk.RIGHT)
         self.footer_hint = tk.Label(footer_content, text="Hover a player for details  ·  Double-click opens Tracker.gg   ",
                                     fg=self.colors['text_muted'], **label_opts)
         self.footer_hint.pack(side=tk.RIGHT)
+
+    UPDATE_CHECK_INTERVAL_MS = 6 * 60 * 60 * 1000
+
+    def setup_update_banner(self, parent):
+        """Strip under the header announcing a newer version on GitHub (hidden until there is one)"""
+        bg = blend(self.colors['ally'], self.colors['bg_primary'], 0.82)
+        self.update_banner = tk.Frame(parent, bg=bg)
+        inner = tk.Frame(self.update_banner, bg=bg)
+        inner.pack(fill=tk.X, padx=16, pady=7)
+
+        tk.Label(inner, text="UPDATE AVAILABLE", font=(self.font_semibold, 8),
+                 bg=bg, fg=self.colors['ally']).pack(side=tk.LEFT)
+        self.update_version_label = tk.Label(inner, font=(self.font_display, 12, 'italic'),
+                                             bg=bg, fg=self.colors['text_primary'])
+        self.update_version_label.pack(side=tk.LEFT, padx=(10, 12))
+        self.update_notes_label = tk.Label(inner, font=(self.font_regular, 9), anchor='w',
+                                           bg=bg, fg=self.colors['text_secondary'])
+        self.update_notes_label.pack(side=tk.LEFT, fill=tk.X, expand=True)
+
+        close = tk.Label(inner, text="✕", font=(self.font_regular, 10), cursor='hand2',
+                         bg=bg, fg=self.colors['text_muted'], padx=6)
+        close.pack(side=tk.RIGHT, padx=(10, 0))
+        close.bind('<Button-1>', lambda e: self.hide_update_banner())
+        self.make_button(inner, "Download", lambda: webbrowser.open(f"{updater.REPO_URL}#updating"),
+                         primary=True).pack(side=tk.RIGHT)
+
+    def check_for_updates(self):
+        """Look for a newer version in the background; repeats while the app stays open"""
+        def check():
+            update = updater.check_for_update(self.app_version)
+            if update:
+                self.root.after(0, lambda: self.show_update_banner(update))
+
+        threading.Thread(target=check, daemon=True).start()
+        self.root.after(self.UPDATE_CHECK_INTERVAL_MS, self.check_for_updates)
+
+    def show_update_banner(self, update):
+        if update['version'] == self._dismissed_update:
+            return
+        self._shown_update = update['version']
+        self.update_version_label.config(text=f"v{update['version']}")
+        self.update_notes_label.config(text=update['notes'])
+        self.update_banner.pack(fill=tk.X, before=self._content_frame)
+        self.log(f"Update available: v{update['version']} (you have v{self.app_version})")
+
+    def hide_update_banner(self):
+        self._dismissed_update = getattr(self, '_shown_update', None)
+        self.update_banner.pack_forget()
 
     def setup_tooltips(self):
         """Tooltips and keyboard shortcuts"""
