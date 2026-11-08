@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Launch the Valorant detector with comprehensive logging enabled
+Launch the Valorant Lobby Scout with comprehensive logging enabled
 """
 
 import sys
@@ -11,7 +11,7 @@ from gui_app import main
 def run_with_detailed_logging():
     """Run the application with detailed logging"""
     
-    print("🎯 VALORANT MULTI-PLATFORM DETECTOR")
+    print("🎯 VALORANT LOBBY SCOUT")
     print("=" * 50)
     print("🔧 Initializing comprehensive logging system...")
     
@@ -19,7 +19,7 @@ def run_with_detailed_logging():
     logger_system = init_logging(logging.DEBUG)
     logger = logger_system.logger
     
-    logger.info("🚀 Starting Valorant Multi-Platform Detector with detailed logging")
+    logger.info("🚀 Starting Valorant Lobby Scout with detailed logging")
     logger.info(f"🐍 Python version: {sys.version}")
     logger.info(f"💻 Platform: {sys.platform}")
     

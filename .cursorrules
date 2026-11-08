@@ -1,4 +1,4 @@
-# Valorant Player Detector - AI Agent Configuration
+# Valorant Lobby Scout - AI Agent Configuration
 
 ## Project Overview
 This is a Python-based Valorant player detection application that identifies incognito players, fetches statistics from multiple APIs, and detects streamers across various platforms. The app features a modern Tkinter GUI with real-time match monitoring.

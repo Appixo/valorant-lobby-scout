@@ -1,4 +1,4 @@
-# Valorant Detector Pro - UI Upgrade Guide
+# Valorant Lobby Scout - UI Upgrade Guide
 
 ## 🎨 Professional UI Redesign
 
@@ -26,7 +26,7 @@ The application has been completely redesigned with a **professional, modern dar
 
 #### Header Bar
 - **Larger, More Prominent**: 80px height with gradient effect
-- **Brand Identity**: "⚡ VALORANT DETECTOR PRO" with subtitle
+- **Brand Identity**: "⚡ VALORANT LOBBY SCOUT" with subtitle
 - **Status Indicator**: Color-coded connection status
 - **Action Buttons**: 
   - `▶ START MONITOR` - Primary CTA (Valorant red)
@@ -275,5 +275,5 @@ The new professional UI provides:
 
 ---
 
-**Enjoy your new professional Valorant Detector Pro UI!** 🎮
+**Enjoy your new professional Valorant Lobby Scout UI!** 🎮
 

@@ -9,7 +9,7 @@ except ImportError:
     PLYER_AVAILABLE = False
 
 class NotificationManager:
-    """Manages desktop notifications for the Valorant detector"""
+    """Manages desktop notifications for the Valorant Lobby Scout"""
     
     def __init__(self, enabled=True):
         self.enabled = enabled

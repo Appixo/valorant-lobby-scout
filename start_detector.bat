@@ -1,5 +1,5 @@
 @echo off
-title Valorant Detector
+title Valorant Lobby Scout
 cd /d "%~dp0"
 
 REM Check if Python is installed

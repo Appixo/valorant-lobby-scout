@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Valorant Detector now includes advanced player statistics and smurf detection capabilities to help you make informed decisions about your matches. This system analyzes player performance, rank history, and account patterns to identify potential smurfs or problematic players.
+Valorant Lobby Scout now includes advanced player statistics and smurf detection capabilities to help you make informed decisions about your matches. This system analyzes player performance, rank history, and account patterns to identify potential smurfs or problematic players.
 
 ## Features
 

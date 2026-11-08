@@ -61,7 +61,7 @@ def main():
     logger_system = init_logging()
     logger = get_logger('Console')
     
-    print("🎯 Valorant Hidden Names Detector")
+    print("🎯 Valorant Lobby Scout")
     print("Created by: https://github.com/deadly")
     print("-" * 50)
     

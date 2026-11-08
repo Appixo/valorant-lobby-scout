@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Valorant Player Detector - Main Entry Point
+Valorant Lobby Scout - Main Entry Point
 Launches the professional GUI application
 """
 
@@ -15,7 +15,7 @@ try:
     
     if __name__ == "__main__":
         print("=" * 60)
-        print("🎯 Valorant Player Detector Pro")
+        print("🎯 Valorant Lobby Scout")
         print("=" * 60)
         print("✨ Launching professional UI...")
         print("🔍 Hidden player detection enabled")

@@ -1,6 +1,6 @@
-# Design brief: Valorant Player Detector
+# Design brief: Valorant Lobby Scout
 
-I'd like you to redesign the interface of a small Windows desktop app I built for myself: **Valorant Player Detector**. Two screenshots of the current version are attached (`current-horizontal.png` and `current-vertical-hover.png`). It works, but it looks like a developer made it. I want it to look and feel like a polished, premium companion app for Valorant players.
+I'd like you to redesign the interface of a small Windows desktop app I built for myself: **Valorant Lobby Scout**. Two screenshots of the current version are attached (`current-horizontal.png` and `current-vertical-hover.png`). It works, but it looks like a developer made it. I want it to look and feel like a polished, premium companion app for Valorant players.
 
 ## What the app does
 

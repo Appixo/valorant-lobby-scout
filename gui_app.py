@@ -27,7 +27,7 @@ class ValorantDetectorGUI:
         self.logger = get_logger('GUI')
         
         self.root = root
-        self.root.title("Valorant Detector Pro")
+        self.root.title("Valorant Lobby Scout")
         
         # Set application icon (must be set BEFORE overrideredirect for taskbar)
         # ICO format works better with borderless windows on Windows
@@ -285,7 +285,7 @@ class ValorantDetectorGUI:
                  font=(self.font_semibold, 7),
                  bg=self.colors['bg_secondary'],
                  fg=self.colors['accent_red']).pack(anchor='w')
-        tk.Label(title_box, text="PLAYER DETECTOR",
+        tk.Label(title_box, text="LOBBY SCOUT",
                  font=(self.font_display, 16, 'italic'),
                  bg=self.colors['bg_secondary'],
                  fg=self.colors['text_primary']).pack(anchor='w')
@@ -472,7 +472,7 @@ class ValorantDetectorGUI:
         for text, color in legend:
             tk.Label(footer_content, text=text, fg=color, **label_opts).pack(side=tk.LEFT, padx=(0, 16))
 
-        tk.Label(footer_content, text="v2.2", fg=self.colors['text_muted'], **label_opts).pack(side=tk.RIGHT)
+        tk.Label(footer_content, text="v2.3", fg=self.colors['text_muted'], **label_opts).pack(side=tk.RIGHT)
         self.footer_hint = tk.Label(footer_content, text="Hover a player for details  ·  Double-click opens Tracker.gg   ",
                                     fg=self.colors['text_muted'], **label_opts)
         self.footer_hint.pack(side=tk.RIGHT)

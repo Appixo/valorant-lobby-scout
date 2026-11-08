@@ -33,7 +33,7 @@ class TrackerGGAPI:
         self.session = requests.Session()
         self.session.headers.update({
             'TRN-Api-Key': api_key,  # This should be the App ID
-            'User-Agent': 'ValorantPlayerDetector/1.0',
+            'User-Agent': 'ValorantLobbyScout/1.0',
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         })

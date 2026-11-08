@@ -1,6 +1,6 @@
 # AI Agent System - Quick Reference
 
-This directory contains specialized AI agent configurations for the Valorant Player Detector project.
+This directory contains specialized AI agent configurations for the Valorant Lobby Scout project.
 
 ## Available Agents
 

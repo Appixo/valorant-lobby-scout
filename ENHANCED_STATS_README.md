@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Valorant Hidden Name Detector now features **enhanced player statistics** directly from Riot's API, providing comprehensive player insights including player level, current rank, peak rank, and headshot percentage.
+The Valorant Lobby Scout now features **enhanced player statistics** directly from Riot's API, providing comprehensive player insights including player level, current rank, peak rank, and headshot percentage.
 
 ## New Features
 

@@ -5,7 +5,7 @@ import json
 import sys
 
 class ValorantLogger:
-    """Comprehensive logging system for Valorant detector"""
+    """Comprehensive logging system for Valorant Lobby Scout"""
     
     def __init__(self, log_level=logging.INFO):
         self.log_level = log_level
@@ -61,7 +61,7 @@ class ValorantLogger:
         self.setup_specialized_loggers()
         
         self.logger.info("=" * 80)
-        self.logger.info("🎯 VALORANT MULTI-PLATFORM DETECTOR STARTED")
+        self.logger.info("🎯 VALORANT LOBBY SCOUT STARTED")
         self.logger.info("=" * 80)
         self.logger.info(f"Log Level: {logging.getLevelName(self.log_level)}")
         self.logger.info(f"Log Files: logs/valorant_detector_{timestamp}.log")

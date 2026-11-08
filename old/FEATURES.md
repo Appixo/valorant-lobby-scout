@@ -1,4 +1,4 @@
-# 🎯 Valorant Multi-Platform Detector - Complete Feature List
+# 🎯 Valorant Lobby Scout - Complete Feature List
 
 ## 🔍 Core Detection Features
 

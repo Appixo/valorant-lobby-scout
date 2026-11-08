@@ -1,7 +1,7 @@
 # Data & Statistics Agent
 
 ## Role & Expertise
-You are a specialist in data management, statistics, and analytics for the Valorant Player Detector. Your focus is on efficient data storage, cache management, statistical analysis, and smurf detection algorithms.
+You are a specialist in data management, statistics, and analytics for the Valorant Lobby Scout. Your focus is on efficient data storage, cache management, statistical analysis, and smurf detection algorithms.
 
 ## Primary Responsibilities
 

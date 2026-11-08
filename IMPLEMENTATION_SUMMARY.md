@@ -2,7 +2,7 @@
 
 ## ✅ Mission Accomplished!
 
-Your Valorant Player Detector now uses **rank-yoinker's exact approach** for lightning-fast stats loading!
+Your Valorant Lobby Scout now uses **rank-yoinker's exact approach** for lightning-fast stats loading!
 
 ---
 

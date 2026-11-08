@@ -2,7 +2,7 @@
 
 ## What Changed?
 
-Your Valorant Player Detector now uses **rank-yoinker's approach** for blazing-fast stats loading!
+Your Valorant Lobby Scout now uses **rank-yoinker's approach** for blazing-fast stats loading!
 
 ### Before vs After
 

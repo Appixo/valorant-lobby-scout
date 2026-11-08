@@ -1,13 +1,15 @@
-# Valorant Player Detector
+# Valorant Lobby Scout
 
-A desktop tool that shows who you're playing with and against: ranks, recent performance, parties and possible smurfs.
+A desktop tool that scouts your Valorant lobby: who you're playing with and against, their ranks, recent performance, parties and possible smurfs.
+
+It does not reveal the names of players who use incognito mode.
 
 ## Features
 
 - 🔍 **Hidden names**: marks who uses incognito mode and still loads their stats. Riot no longer hands out those names, so a real Riot ID only appears when you already know it — from your own saved matches or your friends list
 - 🤖 **Auto mode**: detects agent select, the loading screen and matches by itself and loads everyone's stats; start the app before Valorant and it waits for the game
 - 📊 **Player stats**: current rank, peak rank, account level, win rate this act, K/D and headshot % over the last 5 competitive matches
-- 👥 **Parties**: players who queued together get the same number (①, ②, …)
+- 👥 **Parties**: players who queued together sit next to each other with a coloured strip (DUO, TRIO, …); a dashed strip is a guess from recent matches
 - ⚠️ **Possible smurfs**: flags low-level accounts at high ranks, big gaps between peak and current rank, very high win rates and K/Ds
 - ↺ **Met before**: remembers players from earlier matches (when, which map, teammate or opponent)
 - 🖱️ **Hover a player** for the reasons behind these markers; **double-click** to open their Tracker.gg profile
@@ -37,11 +39,12 @@ With auto mode off, click **Refresh** (F5) in agent select or in game, then **Lo
 
 | Marker | Meaning |
 |---|---|
-| ★ (gold row) | You |
-| ● (purple row) | Player using a hidden name |
-| ①②③ | Players in the same party |
+| ★ and gold corners | You |
+| Purple bar and name | Player using incognito mode ("HIDDEN PLAYER" when Riot withholds the name) |
+| Coloured strip (DUO, TRIO, …) | Players in the same party; dashed with "?" = likely, from recent matches |
+| Rank colours | Tier of the rank (Gold, Platinum, Diamond, Ascendant, Immortal, …) |
 | ⚠ | Possible smurf (hover to see why) |
-| ↺ | You've played with or against this player before |
+| ↺ 2× | You've played with or against this player before, and how often |
 
 Party detection depends on which players' presence the game client shares, so not every party may show up.
 
@@ -68,7 +71,7 @@ Party detection depends on which players' presence the game client shares, so no
 ## Project Structure
 
 ```
-📁 Valorant Player Detector
+📁 Valorant Lobby Scout
 ├── main.py                 # Entry point
 ├── start_detector.bat      # Windows launcher (also used by the desktop shortcut)
 ├── gui_app.py              # GUI (Tkinter)
@@ -105,6 +108,11 @@ Each agent has specific expertise and responsibilities. See `.cursorrules` and `
 This tool uses the Valorant client API for educational purposes. Use responsibly and in accordance with Riot Games' Terms of Service.
 
 ## Recent Updates
+
+### Version 2.3 (November 2026)
+- ✅ Renamed to Valorant Lobby Scout
+- ✅ Restyled team panels: coloured team banners, player cards, tier-coloured ranks, party strips
+- ✅ Incognito players you already know (saved matches, friends list) show their Riot ID
 
 ### Version 2.2 (November 2026)
 - ✅ Auto mode: detects agent select and matches, loads stats, reconnects when Valorant starts

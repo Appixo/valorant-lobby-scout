@@ -1,4 +1,4 @@
-# Valorant Player Detector - UI Upgrade v2.0
+# Valorant Lobby Scout - UI Upgrade v2.0
 
 ## 🎨 Major UI Enhancements
 
@@ -17,7 +17,7 @@ The UI has been completely redesigned to match a cleaner, more professional aest
   - Warning Amber: `#f59e0b`
 
 #### 2. **Cleaner Header**
-- **Simplified Title**: "Valorant Player Detector" with game controller icon 🎯
+- **Simplified Title**: "Valorant Lobby Scout" with game controller icon 🎯
 - **Clean Status Indicator**: "● Connected" in green
 - **Better Button Layout**:
   - "Start Monitor" (green)
@@ -57,7 +57,7 @@ The UI has been completely redesigned to match a cleaner, more professional aest
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ 🎯 Valorant Player Detector    ● Connected             │
+│ 🎯 Valorant Lobby Scout    ● Connected             │
 │              [Start Monitor] [Refresh] [Get Player Stats]│
 ├─────────────────────────────────────────────────────────┤
 │ 🎮 Match Status                                         │

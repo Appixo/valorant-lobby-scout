@@ -4,7 +4,7 @@
 **Status**: ✅ Complete
 
 ## Overview
-Successfully cleaned up the Valorant Player Detector project by removing duplicate files and implementing a comprehensive AI agent system for efficient development.
+Successfully cleaned up the Valorant Lobby Scout project by removing duplicate files and implementing a comprehensive AI agent system for efficient development.
 
 ---
 
